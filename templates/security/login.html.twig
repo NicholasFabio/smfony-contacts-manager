@@ -1,0 +1,54 @@
+{% extends 'contactBase.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+
+<div class="row bg-dark" style="height:100vh">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-white text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Sign in to manage your contacts</h1>
+                <p class="col-lg-10 fs-4">
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+                </p>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-light" method="post">
+                    <div class="form-floating mb-3">
+                        
+                        <input type="email" class="form-control" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
+                        <label for="inputEmail">Email Address</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+                        <label for="inputPassword">Password</label>
+                    </div>
+
+                    <input type="hidden" name="_csrf_token"
+                        value="{{ csrf_token('authenticate') }}"
+                    >
+
+                    <button class="w-100 btn btn-lg btn-primary login-user" type="submit">Sign in</button>
+
+                    <div class="text-center" style="padding-top:10px;">
+                        <p>Dont have an account? <a href="/register">Register</a></p>
+                    </div>
+
+                    <hr class="my-4">
+                    <small class="text-muted">By clicking Sign up, you agree to the terms of use.</small>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,34 @@
+
+contact_show:
+  path : /contact/{id}
+  controller : App\Controller\ContactRenderController::show
+  methods: GET|HEAD
+
+contact_list:
+  path : /contacts/list/
+  controller : App\Controller\ContactRenderController::list
+  methods: GET
+
+contact_add_dummy:
+  path : /contacts/addDummy
+  controller : App\Controller\ContactRenderController::createDummyContact
+  methods: GET
+
+contact_add:
+  path : /contacts/add/
+  controller : App\Controller\ContactRenderController::add
+  methods: GET
+
+login:
+  path : /login
+  controller : App\Controller\LoginController::login
+  methods: GET
+
+register:
+  path : /register
+  controller : App\Controller\LoginController::register
+  methods: GET
+
+index:
+    path: /
+    controller: App\Controller\ContactRenderController::index

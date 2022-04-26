@@ -1,0 +1,63 @@
+{% extends 'contactBase.html.twig' %}
+
+{% block body %}
+
+<style>
+label {
+    color: black;
+}
+
+</style>
+<div class="row" style="height:100vh">
+    <div class="container bg-dark text-white" style="padding-left:150px;padding-right:150px;padding-top:25px;">
+        
+        <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-white text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Add New Contact</h1>
+                <p class="col-lg-10 fs-4">
+                    {% if app.user %}
+                        <div class="mb-3">
+                            You are logged in as {{ app.user.username }}
+                        </div>
+                        <div>
+                        <a type="button" class="btn btn-info btn-lg w-10 go-back"  href="{{ path('list') }}">Go back</a>
+                        <a type="button" class="btn btn-secondary btn-lg w-10 " href="{{ path('app_logout') }}">Logout</a>
+                        </div>
+                    {% endif %}
+                </p>
+                
+            </div>
+
+            <div class="col-md-10 mx-auto col-lg-5">
+                <form class="p-4 p-md-5 border rounded-3 bg-light needs-validation">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control add-name" id="name" aria-describedby="name" placeholder="John Doe" required>
+                    </div>
+
+                    <div class="form-group" style="padding-top:10px;">
+                        <label for="exampleInputEmail1">Email address</label>
+                        <input type="email" class="form-control add-email" id="exampleInputEmail1" aria-describedby="email" placeholder="JohnDoe@gmail.com" required>
+                    </div>
+
+                    <div class="form-group" style="padding-top:10px;">
+                        <label for="exampleFormControlSelect1">Gender</label>
+                        <select class="form-control add-gender" id="exampleFormControlSelect1" required>
+                            <option value="0" >Select gender</option>
+                            <option value="1" >Male</option>
+                            <option value="2">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="padding-top:10px;">
+                        <label for="content">Content</label>
+                        <textarea class="form-control add-content" id="exampleFormControlTextarea1" rows="5"></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-outline-primary btn-lg w-100 add-contact">Add Customer</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

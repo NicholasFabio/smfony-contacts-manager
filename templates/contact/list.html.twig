@@ -1,0 +1,64 @@
+{% extends 'contactBase.html.twig' %}
+
+{% block body %}
+
+<div class="row" style="height:100vh">
+    <div class="container bg-light text-white" style="padding-left:150px;padding-right:150px;padding-top:25px;">
+    <br>
+        <div class="row text-dark">
+            <div class="col">
+                <h1>Contacts Manager</h1>
+                {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col">
+            </div>
+            <div class="col text-right">
+                <a type="button" href="{{path('contact_add')}}" class="btn btn-info">Add Contact</a>
+                <a type="button" href="{{path('contact_add_dummy')}}" class="btn btn-secondary">Add Dummy Contact</a>
+            </div>        
+        </div>
+        
+        <hr>
+        <br>
+
+        <table class="table text-black" id="myTable">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Gender</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for contact in contacts %}
+                <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{contact.name}}</td>
+                        <td>{{contact.email}}</td>
+                        <td>{% if contact.gender == 1 %} Male {% else %} Female {% endif %}</td>
+                        <td>{{contact.content}}</td>
+                        <td>
+                            <a href="/contact/{{contact.id}}"><i class="text-secondary bi bi-pencil-square"></i></a>
+                            <a href="/api/contacts/remove/{{contact.id}}" class=""><i class="text-danger bi bi-trash3"></i></a>
+                        </td>   
+                    </tr>
+                {% endfor %}
+                
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
+{% endblock %}

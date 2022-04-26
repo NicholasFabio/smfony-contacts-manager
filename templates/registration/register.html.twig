@@ -1,0 +1,38 @@
+{% extends 'contactBase.html.twig' %}
+
+
+{% block title %}Register{% endblock %}
+
+
+{% block body %}
+
+<div class="row bg-dark" style="height:100vh">
+    <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+        <div class="row align-items-center g-lg-5 py-5">
+            <div class="col-lg-7 text-white text-center text-lg-start">
+                <h1 class="display-4 fw-bold lh-1 mb-3">Register an account to begin managing your contacts</h1>
+                <p class="col-lg-10 fs-4">Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by attempting to submit the form without completing it.</p>
+            </div>
+            <div class="col-md-10 mx-auto col-lg-5">
+                <div class="p-4 p-md-5 border rounded-3 bg-light">
+                {{ form_start(registrationForm) }}
+                    {{ form_row(registrationForm.email) }}
+                    {{ form_row(registrationForm.plainPassword, {
+                        label: 'Password'
+                    }) }}
+                    {{ form_row(registrationForm.agreeTerms) }}
+                    
+                    <button type="submit" class="w-100 btn btn-lg btn-primary mt-3">Register</button>
+                    <div class="text-center" style="padding-top:10px;">
+                        <p>Already have an account? <a href="/login">Sign In</a></p>
+                    </div>
+                {{ form_end(registrationForm) }}
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
